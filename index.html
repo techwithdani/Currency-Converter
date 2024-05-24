@@ -15,6 +15,7 @@
 </head>
 <body>
     <header>
+        <!-- Main heading -->
         <h1 class="main-heading">Currency Converter</h1>
     </header>
 
@@ -22,36 +23,42 @@
         <!-- App container -->
         <div class="container">
             <form>
-                <!-- Amount Section -->
+                <!-- Amount section -->
                 <div class="input-amount">
                     <p>Enter Amount</p>
                     <input type="text" placeholder="1" class="amount">
                 </div>
 
                   <!-- Message to see exchange rates -->
-                  <div class="conversion-message">Exchange Rates</div>
+                  <div class="conversion-message">Exchange Rate</div>
 
-                <!-- Dropdown Menu -->
+                <!-- Dropdown menu -->
                 <div class="dropdown-menu">
                     <!-- From -->
                     <div class="select-from">
+                        <p>From</p>
                         <img src="https://flagsapi.com/BE/shiny/64.png">
                         <select name="from"></select>
                     </div>
 
+                    <!-- Exchange icon -->
                     <i class="fa-solid fa-arrows-rotate"></i>
 
                     <!-- To -->
                     <div class="select-to">
+                        <p>To</p>
                         <img src="https://flagsapi.com/BE/shiny/64.png">
                         <select name="to"></select>
                     </div>
                 </div>
 
-                <button class="exchange-rate">Exchange Rate</button>
+                <!-- Button to convert currency -->
+                <button class="exchange-rate-button">Get Exchange Rate</button>
             </form>
         </div>
     </main>
+
+    <!-- JavaScript scripts -->
     <script src="app.js"></script>
     <script src="CountriesList.js"></script>
 </body>

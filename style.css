@@ -1,3 +1,4 @@
+/* Universal Settings */
 * {
     margin: 0;
     padding: 0;
@@ -8,15 +9,12 @@
     box-sizing: border-box;
 }
 
+/* Body */
 body {
-    background-color: #E76F51;
+    background-color: #252422;
 }
 
-.main-heading {
-    text-align: center;
-    padding: 1rem 0 1rem 0;
-}
-
+/* App Content */
 main {
     min-height: 80vh;
     display: flex;
@@ -24,8 +22,51 @@ main {
     align-items: center;
 }
 
+/* Form */
+form {
+    color: #ccc5b9;
+    padding: 1rem;
+}
+
+form input, select {
+    border: none;
+    outline: none;
+}
+
+/* Select */
+select {
+    background-color: #252422;
+    color: #ccc5b9;
+    height: 2rem;
+    width: 4rem;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Icon */
+i {
+    font-size: 2rem;
+}
+
+/* Button */
+button {
+    border: none;
+    outline: none;
+}
+
+/* App name */
+.main-heading {
+    text-align: center;
+    padding: 2rem 0 2rem 0;
+    color: #ccc5b9;
+    font-size: 50px;
+}
+
+/* App Container */
 .container {
-    background-color: #E9C46A;
+    background-color: #403d39;
     height: 600px;
     width: 600px;
     border-radius: 50px;
@@ -35,15 +76,7 @@ main {
     box-shadow: 5px 5px 5px;
 }
 
-form {
-    padding: 1rem;
-}
-
-form input, select {
-    border: none;
-    outline: none;
-}
-
+/* Amount Section */
 .input-amount {
     margin-bottom: 2rem;
     text-align: center;
@@ -51,29 +84,68 @@ form input, select {
 }
 
 .input-amount p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 4rem;
 }
 
+/* Input box */
 .amount {
     height: 4vh;
     width: 50vh;
-    border-radius: 50px;
+    border-radius: 10px;
     padding: 0.5rem;
     text-align: center;
     font-size: 18px;
     cursor: pointer;
-    background-color: #264653;
-    color: white;
+    background-color: #252422;
+    color: #ccc5b9;
 }
 
+/* Message box to see exchange rate message */
 .conversion-message {
     height: 4vh;
     width: 50vh;
-    border-radius: 50px;
+    border-radius: 10px;
     text-align: center;
     padding: 0.5rem;
     font-size: 18px;
     margin-bottom: 2rem;
-    background-color: #264653;
-    color: white;
+    background-color: #252422;
+    color: #ccc5b9;
+}
+
+/* Dropdown menu for select options */
+.dropdown-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-from{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.select-to{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dropdown-menu img {
+    padding: 0.5rem;
+}
+
+/* Button to get exchange rates for currencies */
+.exchange-rate-button {
+    height: 4vh;
+    width: 50vh;
+    border-radius: 5px;
+    background-color: #eb5e28;
+    color: #252422;
+    font-size: 18px;
+    padding: 0.5rem;
+    text-align: center;
+    margin-top: 4rem;
+    cursor: pointer;
 }
