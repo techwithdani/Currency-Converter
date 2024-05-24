@@ -5,4 +5,75 @@
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #E76F51;
+}
+
+.main-heading {
+    text-align: center;
+    padding: 1rem 0 1rem 0;
+}
+
+main {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #E9C46A;
+    height: 600px;
+    width: 600px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 5px;
+}
+
+form {
+    padding: 1rem;
+}
+
+form input, select {
+    border: none;
+    outline: none;
+}
+
+.input-amount {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 30px;
+}
+
+.input-amount p {
+    margin-bottom: 1.5rem;
+}
+
+.amount {
+    height: 4vh;
+    width: 50vh;
+    border-radius: 50px;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #264653;
+    color: white;
+}
+
+.conversion-message {
+    height: 4vh;
+    width: 50vh;
+    border-radius: 50px;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 18px;
+    margin-bottom: 2rem;
+    background-color: #264653;
+    color: white;
 }

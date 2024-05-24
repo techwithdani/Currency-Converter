@@ -15,22 +15,21 @@
 </head>
 <body>
     <header>
-        <h1>Currency Converter</h1>
+        <h1 class="main-heading">Currency Converter</h1>
     </header>
 
     <main>
         <!-- App container -->
         <div class="container">
-            <!-- Form for conversion -->
             <form>
-                <h2>Convert</h2>
                 <!-- Amount Section -->
                 <div class="input-amount">
-                    <p>Amount</p>
-                    <input type="text" placeholder="0">
-                    <!-- Message to see exchange rates -->
-                    <div class="conversion-message"></div>
+                    <p>Enter Amount</p>
+                    <input type="text" placeholder="1" class="amount">
                 </div>
+
+                  <!-- Message to see exchange rates -->
+                  <div class="conversion-message">Exchange Rates</div>
 
                 <!-- Dropdown Menu -->
                 <div class="dropdown-menu">
@@ -48,11 +47,11 @@
                         <select name="to"></select>
                     </div>
                 </div>
+
                 <button class="exchange-rate">Exchange Rate</button>
             </form>
         </div>
     </main>
-
     <script src="app.js"></script>
     <script src="CountriesList.js"></script>
 </body>
