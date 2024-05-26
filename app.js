@@ -24,7 +24,7 @@ const selectCurrency = () => {
                 options.selected = "selected";
             }
 
-            if (options.value === "PKR" && select.name === "to") {
+            if (options.value === "EUR" && select.name === "to") {
                 options.selected = "selected";
             }
 
@@ -53,19 +53,22 @@ const flagUpdate = (element) => {
     flagImage.src = newSource;
 }
 
-
+// Function to calculate exchange rate
 const calculateAmount = (rate) => {
+    // Getting the amount value
     let amountValue = amount.value;
+    // Condition to check if the value is negative or zero
     if (amountValue === "" || amountValue < 1) {
         amountValue = 1;
         amount.value = "1";
     }
 
+    // Calculating exchange rate with the given amount by the user
     let calculatedAmount = amountValue * rate;
     return calculatedAmount;
 }
 
-
+// Displaying the exchange rate after calculation
 const displayExchangeRate = (amount, exchangeRate) => {
     message.innerText = `${amount} ${fromCurrency.value} = ${exchangeRate} ${toCurrency.value}`;
 }
@@ -80,23 +83,28 @@ const getExchangeRate = async () => {
     let data = await response.json();
     // Getting Exchange rate by accessing data of the specified currency
     let exchangeRate = data[fromCurrency.value.toLowerCase()][toCurrency.value.toLowerCase()];
-
+    // Storing the returned calculation in variable
     let finalAmount = calculateAmount(exchangeRate);
+    // Calling displayExchangeRate function
     displayExchangeRate(amount.value, finalAmount);
 
 }
 
-
+// Function to run the converter
 const runConverter = () => {
+    // Function called to select the currency from dropdown menu
     selectCurrency();
+    // Event listener to provide exchange rate
     button.addEventListener("click", (evt) => {
+        // To prevent default behaviour of the form
         evt.preventDefault();
         getExchangeRate();
     });
+    // On refresh, the amount value will be null
     window.addEventListener("load", () => {
-        getExchangeRate()
-        amount.value = "1";
+        amount.value = "";
     });
 }
 
+// Function to run the app
 runConverter();
