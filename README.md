@@ -2,7 +2,7 @@
 
 A simple web-based currency converter that allows users to select currencies and get the latest exchange rates. The app uses the Currency API to fetch real-time exchange rate data.
 
-![screenshot](images/GameImage.png)
+![screenshot](images/AppScreenshot.png)
 
 ## Features
 
