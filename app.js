@@ -3,6 +3,7 @@ let baseUrl = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/
 
 // Selecting elements from HTML file with DOM
 let dropdownMenu = document.querySelectorAll(".dropdown-menu select");
+let amount = document.querySelector(".input-amount input");
 
 // Loop to access the select elements and adding options to them according to the countries list file
 for(let select of dropdownMenu) {
@@ -24,4 +25,16 @@ for(let select of dropdownMenu) {
         // Appending all the options created in select element
         select.append(options);
     }
+
+    select.addEventListener("change", (evt) => {
+        flagUpdate(evt.target);
+    });
+}
+
+const flagUpdate = (element) => {
+    let flagImage = element.parentElement.querySelector("img");
+    let currencyCode = element.value;
+    let countryCode = countriesList[currencyCode];
+    let newSource = `https://flagsapi.com/${countryCode}/shiny/64.png`;
+    flagImage.src = newSource;
 }
