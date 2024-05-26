@@ -6,6 +6,7 @@ let dropdownMenu = document.querySelectorAll(".dropdown-menu select");
 let amount = document.querySelector(".input-amount input");
 let fromCurrency = document.querySelector(".select-from select");
 let toCurrency = document.querySelector(".select-to select");
+let message = document.querySelector(".conversion-message");
 
 const selectCurrency = () => {
     // Loop to access the select elements and adding options to them according to the countries list file
@@ -51,14 +52,32 @@ const flagUpdate = (element) => {
     flagImage.src = newSource;
 }
 
+// Function to send request to API and get data from it in form of JSON
 const getExchangeRate = async () => {
+    // Creating URL with Currency endpoints
     const URL = `${baseUrl}/${fromCurrency.value.toLowerCase()}.json`;
+    // Getting response from API
     let response = await fetch(URL);
+    // Converting that response from promise to JSON
     let data = await response.json();
+    // Getting Exchange rate by accessing data of the specified currency
     let exchangeRate = data[fromCurrency.value.toLowerCase()][toCurrency.value.toLowerCase()];
     return exchangeRate;
 }
 
+const calculateAmount = (rate) => {
+    let amountValue = amount.value;
+    if (amountValue === "" || amountValue < 1) {
+        amountValue = 1;
+        amount.value = "1";
+    }
 
+    let calculatedAmount = amountValue * rate;
+    return calculatedAmount;
+}
 
-selectCurrency();
+const displayExchangeRate = () => {
+    let exchangeRate = getExchangeRate();
+    let finalAmount = calculateAmount(exchangeRate);
+    message.innerText = `${fromCurrency.value} = ${finalAmount} ${toCurrency.value}`;
+}
