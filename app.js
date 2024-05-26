@@ -4,33 +4,37 @@ let baseUrl = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/
 // Selecting elements from HTML file with DOM
 let dropdownMenu = document.querySelectorAll(".dropdown-menu select");
 let amount = document.querySelector(".input-amount input");
+let fromCurrency = document.querySelector(".select-from select");
+let toCurrency = document.querySelector(".select-to select");
 
-// Loop to access the select elements and adding options to them according to the countries list file
-for(let select of dropdownMenu) {
-    // Loop to get currency code from countries list (key)
-    for(currencyCode in countriesList) {
-        // Creating option elements in select to add currency codes
-        let options = document.createElement("option");
-        options.innerText = currencyCode;
-        options.value = currencyCode;
+const selectCurrency = () => {
+    // Loop to access the select elements and adding options to them according to the countries list file
+    for(let select of dropdownMenu) {
+        // Loop to get currency code from countries list (key)
+        for(currencyCode in countriesList) {
+            // Creating option elements in select to add currency codes
+            let options = document.createElement("option");
+            options.innerText = currencyCode;
+            options.value = currencyCode;
 
-        // Condition to keep default selection of USD for "from" and PKR for "to"
-        if (options.value === "USD" && select.name === "from") {
-            options.selected = "selected";
+            // Condition to keep default selection of USD for "from" and PKR for "to"
+            if (options.value === "USD" && select.name === "from") {
+                options.selected = "selected";
+            }
+
+            if (options.value === "PKR" && select.name === "to") {
+                options.selected = "selected";
+            }
+
+            // Appending all the options created in select element
+            select.append(options);
         }
 
-        if (options.value === "PKR" && select.name === "to") {
-            options.selected = "selected";
-        }
-
-        // Appending all the options created in select element
-        select.append(options);
+        // Adding event listener to select for tracking the change in options
+        select.addEventListener("change", (evt) => {
+            flagUpdate(evt.target);
+        });
     }
-
-    // Adding event listener to select for tracking the change in options
-    select.addEventListener("change", (evt) => {
-        flagUpdate(evt.target);
-    });
 }
 
 // Function to update the flag
@@ -46,3 +50,15 @@ const flagUpdate = (element) => {
     // Updating the flag image according to selected currency
     flagImage.src = newSource;
 }
+
+const getExchangeRate = async () => {
+    const URL = `${baseUrl}/${fromCurrency.value.toLowerCase()}.json`;
+    let response = await fetch(URL);
+    let data = await response.json();
+    let exchangeRate = data[fromCurrency.value.toLowerCase()][toCurrency.value.toLowerCase()];
+    return exchangeRate;
+}
+
+
+
+selectCurrency();
