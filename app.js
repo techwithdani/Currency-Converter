@@ -3,10 +3,11 @@ let baseUrl = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/
 
 // Selecting elements from HTML file with DOM
 let dropdownMenu = document.querySelectorAll(".dropdown-menu select");
-let amount = document.querySelector(".input-amount input");
+let amount = document.querySelector(".amount");
 let fromCurrency = document.querySelector(".select-from select");
 let toCurrency = document.querySelector(".select-to select");
 let message = document.querySelector(".conversion-message");
+let button = document.querySelector(".exchange-rate-button");
 
 const selectCurrency = () => {
     // Loop to access the select elements and adding options to them according to the countries list file
@@ -52,18 +53,6 @@ const flagUpdate = (element) => {
     flagImage.src = newSource;
 }
 
-// Function to send request to API and get data from it in form of JSON
-const getExchangeRate = async () => {
-    // Creating URL with Currency endpoints
-    const URL = `${baseUrl}/${fromCurrency.value.toLowerCase()}.json`;
-    // Getting response from API
-    let response = await fetch(URL);
-    // Converting that response from promise to JSON
-    let data = await response.json();
-    // Getting Exchange rate by accessing data of the specified currency
-    let exchangeRate = data[fromCurrency.value.toLowerCase()][toCurrency.value.toLowerCase()];
-    return exchangeRate;
-}
 
 const calculateAmount = (rate) => {
     let amountValue = amount.value;
@@ -76,8 +65,38 @@ const calculateAmount = (rate) => {
     return calculatedAmount;
 }
 
-const displayExchangeRate = () => {
-    let exchangeRate = getExchangeRate();
-    let finalAmount = calculateAmount(exchangeRate);
-    message.innerText = `${fromCurrency.value} = ${finalAmount} ${toCurrency.value}`;
+
+const displayExchangeRate = (amount, exchangeRate) => {
+    message.innerText = `${amount} ${fromCurrency.value} = ${exchangeRate} ${toCurrency.value}`;
 }
+
+// Function to send request to API and get data from it in form of JSON
+const getExchangeRate = async () => {
+    // Creating URL with Currency endpoints
+    let URL = `${baseUrl}/${fromCurrency.value.toLowerCase()}.json`;
+    // Getting response from API
+    let response = await fetch(URL);
+    // Converting that response from promise to JSON
+    let data = await response.json();
+    // Getting Exchange rate by accessing data of the specified currency
+    let exchangeRate = data[fromCurrency.value.toLowerCase()][toCurrency.value.toLowerCase()];
+
+    let finalAmount = calculateAmount(exchangeRate);
+    displayExchangeRate(amount.value, finalAmount);
+
+}
+
+
+const runConverter = () => {
+    selectCurrency();
+    button.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        getExchangeRate();
+    });
+    window.addEventListener("load", () => {
+        getExchangeRate()
+        amount.value = "1";
+    });
+}
+
+runConverter();
