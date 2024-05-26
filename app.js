@@ -9,12 +9,13 @@ const toCurrency = document.querySelector(".select-to select");
 const message = document.querySelector(".conversion-message");
 const button = document.querySelector(".exchange-rate-button");
 
+// Function for selecting currency from dropdown menu
 const selectCurrency = () => {
     // Loop to access the select elements and adding options to them according to the countries list file
     for(let select of dropdownMenu) {
         // Loop to get currency code from countries list (key)
         for(currencyCode in countriesList) {
-            // loop to ensure we only iterate over own properties of countriesList
+            // Condition to ensure we only iterate over own properties of countriesList
             if (countriesList.hasOwnProperty(currencyCode)) {
                 // Creating option elements in select to add currency codes
                 let options = document.createElement("option");
@@ -33,12 +34,12 @@ const selectCurrency = () => {
                 // Appending all the options created in select element
                 select.append(options);
             }
-
-            // Adding event listener to select for tracking the change in options
-            select.addEventListener("change", (evt) => {
-                flagUpdate(evt.target);
-            });
         }
+
+        // Adding event listener to select for tracking the change in options
+        select.addEventListener("change", (evt) => {
+                flagUpdate(evt.target);
+        });
     }
 }
 
@@ -68,7 +69,7 @@ const calculateAmount = (rate) => {
 
     // Calculating exchange rate with the given amount by the user
     const calculatedAmount = amountValue * rate;
-    return calculatedAmount;
+    return calculatedAmount.toFixed(3);
 }
 
 // Displaying the exchange rate after calculation
