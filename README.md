@@ -29,7 +29,3 @@ A simple web-based currency converter that allows users to select currencies and
 
 1. Currency API for providing free and reliable exchange rate data.
 2. Flags API for providing country flags.
-
-### Note
-
-Display: 1920 x 1080
