@@ -2,8 +2,6 @@
 
 A simple web-based currency converter that allows users to select currencies and get the latest exchange rates. The app uses the Currency API to fetch real-time exchange rate data.
 
-![screenshot](images/AppScreenshot.png)
-
 ## Features
 
 1. Select currencies from dropdown menus with default selections for USD and EUR.
